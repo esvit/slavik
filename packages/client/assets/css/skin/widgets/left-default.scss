@@ -1,0 +1,11 @@
+.left-default-widget {
+	.widget-text {
+		padding-top: 10px;
+	}
+	.widget_title {
+		.h3 {
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+}

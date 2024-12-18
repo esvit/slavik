@@ -1,0 +1,62 @@
+.carousel-section{
+	margin-bottom: 20px;
+
+	.carousel-control {
+		width: 35px;
+		z-index: 10;
+		&.right {
+			right: 0;
+			background: none;
+		}
+		&.left {
+			left: 0;
+			background: none;
+		}
+	}
+	.carousel-caption {
+		color: $text-color;
+		text-shadow: 0 1px 2px rgba($body-bg, 0.6);
+		margin: 0 20px;
+
+		.h2 {
+			text-align: left;
+		}
+		.text {
+			font-size: 115%;
+		}
+	}
+	.carousel-inner{
+		overflow: hidden;
+		.text, h4{
+			text-align: left;
+		}
+	}
+	.carousel-indicators {
+		display: none; // Andi says: "Hide dots!"
+	}
+
+	@include respond-to(smartphones-tablets) {
+		padding: 0 !important;
+
+		h2 {
+			padding: 0 15px;
+		}
+
+		.carousel-caption {
+			.h2, .text {
+				text-align: center !important;
+			}
+			.main-btn {
+				text-align: center;
+				margin: 20px auto;
+			}
+		}
+		.carousel-block {
+			min-height: 450px !important;
+
+			img {
+				height: 200px !important;
+			}
+		}
+	}
+}

@@ -1,0 +1,169 @@
+@mixin make-form() {
+
+	form.biznestream-form {
+		/**
+		 * Form defaults
+		 */
+		h3 {
+			// Form header
+			@extend .h3;
+			text-align: left;
+			margin-bottom: 20px;
+			margin-top: 0px;
+		}
+
+		.formPage[data-page-id="0"] button[name="prev"] {
+			display: none;
+		}
+
+		& > ul > li {
+			@include make-row();
+			margin-bottom: $form-group-margin-bottom;
+
+			.form_label {
+				@include make-md-column(3);
+				display: block;
+				img {
+					float: initial;
+					max-width: 70px;
+					margin-right: 5px;
+					margin-bottom: 5px !important;
+				}
+				.requred {
+					color: $brand-danger;
+					padding-left: 2px;
+				}
+			}
+			.form_input {
+				@include make-md-column(9);
+				label {
+					// set text color according to skin
+					// it have wrong default definition in (http://forms.bs/views/_formbuilder/style.css:37)
+					color: $text-color;
+				}
+				.error {
+					color: $brand-danger;
+				}
+				input.error, textarea.error, select.error {
+					border: 2px solid $brand-danger;
+					background: $input-bg;
+				}
+			}
+
+			button {
+				@extend .btn;
+			}
+			.form_radio {
+				@extend .radio;
+				@extend .c-input;
+				@extend .c-radio;
+
+				label.error {
+					left: 0;
+					position: absolute;
+					top: -15px;
+					font-weight: bold;
+				}
+			}
+			.form_checkbox {
+				@extend .checkbox;
+				@extend .c-input;
+				@extend .c-checkbox;
+
+				input[type="checkbox"] {
+					display: block;
+				}
+
+				label.error {
+					left: 0;
+					position: absolute;
+					top: -15px;
+					font-weight: bold;
+				}
+			}
+			// Send form button is primary
+			button[type="submit"], button[type="button"] {
+				@include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+				@include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $btn-border-radius-base);
+			}
+
+			// form separator line
+			.formbuilder-white-space {
+				@extend hr;
+				border-color: transparent;
+				max-height: 0;
+			}
+
+			// Bootstrap input style for form inputs and select
+			input[type="text"], textarea, select {
+				@extend .form-control;
+			}
+
+			// make separator on full width
+			&[data-type="separator"] {
+				.form_input {
+					@include make-md-column(12);
+				}
+			}
+
+			// make separator on full width
+			&[data-type="textblock"] {
+				.form_input {
+					@include make-md-column-offset(3);
+				}
+			}
+
+			// fix for extra padding from .radio & .checkbox default bootstrap styles
+			&[data-type="checkbox"],
+			&[data-type="radio"] {
+				.form_input {
+					// 20 - width of checkbox or radio (get from bootstrap file bootstrap/_forms.scss:238)
+					//padding-left: ($grid-gutter-width / 2) + 20px;
+				}
+				label {
+					padding: 0;
+				}
+			}
+		}
+	}
+}
+
+.form-section, .form-widget, .widget-form {
+	@extend .well;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+
+
+	form.biznestream-form {
+		margin: 0 -15px !important;
+	}
+	@include make-form();
+}
+
+.widget-form {
+	background: none !important;
+
+
+	form.biznestream-form {
+		& > ul > li {
+			.form_label {
+				@include make-md-column(12);
+			}
+			.form_input {
+				@include make-md-column(12);
+			}
+
+			// make separator on full width
+			&[data-type="textblock"] {
+				.form_input {
+					margin: 0;
+				}
+			}
+		}
+	}
+}
+
+#ui-datepicker-div {
+	z-index: 100 !important;
+}

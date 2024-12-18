@@ -1,0 +1,41 @@
+.wide-page {
+
+	.section-text {
+		text-align: center;
+	}
+
+	.product-section {
+		.view-grid {
+			.product-item {
+				@include make-sm-column(6);
+				@include make-md-column(4);
+				@include make-lg-column(3);
+			}
+		}
+	}
+
+	.carousel-section{
+		.container {
+			padding: 0;
+		}
+	}
+
+	.form-section {
+		h3 {
+			padding: 0 15px;
+			text-align: left;
+		}
+		li {
+			margin-left: 0px !important;
+			margin-right: 0px !important;
+		}
+	}
+
+	@include respond-to(smartphones-tablets) {
+		.map-section {
+			.info {
+				padding: 0 15px !important;
+			}
+		}
+	}
+}

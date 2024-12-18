@@ -1,0 +1,86 @@
+{
+  "instructionsFile": "assistant_blueprint.md",
+  "name": "Test Assistant",
+  "description": "",
+  "model": "gpt-4o",
+  "top_p": 1,
+  "temperature": 1,
+  "tool_resources": {},
+  "metadata": {},
+  "response_format": {
+    "type": "text"
+  },
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "getCounterparties",
+        "description": "Get the list of counterparties.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "filter": {
+              "type": "string",
+              "description": "Part of counterparty name to filter by. It can be empty if you want to get all counterparties."
+            },
+            "limit": {
+              "type": "number",
+              "description": "How many counterparties to return. Default is 10."
+            }
+          },
+          "required": [
+            "filter"
+          ],
+          "additionalProperties": false
+        },
+        "strict": false
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "openTransactions",
+        "description": "Open transactios list",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "filter": {
+              "type": "string",
+              "description": "Part of counterparty name to filter by. It can be empty if you want to get all counterparties."
+            },
+            "limit": {
+              "type": "number",
+              "description": "How many counterparties to return. Default is 10."
+            }
+          },
+          "required": [
+            "filter"
+          ],
+          "additionalProperties": false
+        },
+        "strict": false
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "saveUnknownQuestion",
+        "description": "Save question for future training",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "userQuestion": {
+              "type": "string",
+              "description": "Text of user question"
+            }
+          },
+          "required": [
+            "filter"
+          ],
+          "additionalProperties": false
+        },
+        "strict": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+.product-search-popup {
+  display: block;
+  border: 1px solid $navbar-default-border;
+  background: $body-bg;
+
+  .product-search-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    margin: 10px 0;
+
+    .search-icon {
+      display: flex;
+      flex-grow: 0;
+      padding: 10px;
+    }
+    .search-icon .glyphicon::before {
+      max-width: 42px;
+      max-height: 42px;
+      color: grey;
+    }
+    .product-search {
+      display: inline-flex;
+      flex-grow: 1;
+    }
+    .product-search-button span{
+      vertical-align: middle;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "deploy-assistant": "build/bin/deploy.js"
+  },
+  "scripts": {
+    "dev": "cross-env TZ=UTC nodemon src/index.ts",
+    "build": "tsc --project tsconfig.release.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.9",
+    "openai": "^4.77.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

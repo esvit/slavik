@@ -1,0 +1,132 @@
+@mixin btn-shadow($color){
+  @include gradient-vertical-three-colors(lighten($color, 3%), $color, 6%, darken($color, 3%));
+  filter: none;
+  border: 1px solid darken($color, 10%);
+}
+
+th {
+  color: $headings-color;
+}
+
+// Forms ======================================================================
+
+legend {
+  color: $headings-color;
+}
+
+label {
+  font-weight: normal;
+}
+
+.has-warning {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $brand-danger;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-danger;
+  }
+}
+
+.has-error {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $brand-primary;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-primary;
+  }
+}
+
+.has-success {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $brand-success;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-success;
+  }
+}
+
+body .fotorama__thumb-border {
+	border-color: transparent;
+}
+
+
+
+.fotorama.fotorama--fullscreen {
+  .fotorama__fullscreen-icon {
+    font: normal normal normal 14px/1 'Glyphicons Halflings';
+    text-align: center;
+    background: none;
+    line-height: 64px;
+    color: #fff;
+    background: $brand-primary;
+    font-size: 32px;
+    right: 20px;
+    top: 20px;
+    width: 64px;
+    height: 64px;
+
+    &:before {
+      content: "\e014";
+    }
+  }
+}
+.fotorama:not(.fotorama--fullscreen) {
+  .fotorama__fullscreen-icon {
+    top: 20px;
+    right: 50%;
+    background: $brand-primary;
+    font: normal normal normal 14px/1 'Glyphicons Halflings';
+    text-align: center;
+    line-height: 32px;
+    color: #fff;
+
+    &:before {
+      content: "\e003";
+    }
+  }
+  .fotorama__wrap--css3 .fotorama__fullscreen-icon {
+    -webkit-transform: translate3d(16px, -16px, 0);
+    transform: translate3d(16px, -16px, 0);
+  }
+  .fotorama__wrap--css3.fotorama__wrap--no-controls.fotorama__wrap--slide.fotorama__wrap--toggle-arrows
+  .fotorama__fullscreen-icon:not(:focus) {
+    -webkit-transform: translate3d(16px, -32px, 0);
+    transform: translate3d(16px, -32px, 0);
+  }
+}

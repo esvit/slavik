@@ -1,0 +1,97 @@
+$icon-font-path: "/assets/fonts/" !default; // need for Bootstrap Glyphfont
+
+@import "./variables.scss"; // file from skin
+
+@function set-relative-color($color, $color1, $color2) {
+	@if (lightness($color) > 50) {
+		@return $color1; // Lighter backgorund, return dark color
+	} @else {
+		@return $color2; // Darker background, return light color
+	}
+}
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+
+$navbar-default-link-hover-color: set-relative-color($navbar-default-bg, lighten($navbar-default-link-color, 10%), darken($navbar-default-link-color, 10%));
+$navbar-default-link-active-color: set-relative-color($navbar-default-bg, lighten($navbar-default-link-color, 10%), darken($navbar-default-link-color, 10%));
+$navbar-inverse-link-hover-color: set-relative-color($navbar-inverse-bg, lighten($navbar-inverse-link-color, 5%), darken($navbar-inverse-link-color, 5%));
+$navbar-default-link-hover-bg: set-relative-color($navbar-default-bg, darken($navbar-default-bg, 3%), lighten($navbar-default-bg, 3%));
+$navbar-default-link-active-bg: set-relative-color($navbar-default-bg, darken($navbar-default-bg, 3%), lighten($navbar-default-bg, 3%));
+$navbar-inverse-link-active-bg: set-relative-color($navbar-inverse-bg, lighten($navbar-inverse-bg, 5%), darken($navbar-inverse-bg, 5%));
+
+$font-size-products: $font-size-headings !default;
+$onclick-color: $btn-link-disabled-color !default;
+
+@import "bootstrap-sass/assets/stylesheets/_bootstrap"; // import bootstrap
+@import "animatewithsass/animate.scss"; // import bootstrap
+@import "./node_modules/nanoscroller/bin/css/nanoscroller";
+@import "./extends.scss"; // file from skin
+
+$baseLineHeight:  10px;
+$baseBorderRadius: 4px;
+$logoWidth: 220px;
+$logoHeight: 100px;
+$headCarouselHeight: 400px;
+$mainMenuHeight: $navbar-height * 2 + $navbar-margin-bottom;
+$marginAuto: 0 auto;
+$marginTop: floor($font-size-base);
+$animationTime: .3s;
+
+@import "media-queries";
+@import "search";
+
+@import "layout/default";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/checkbox";
+@import "layout/tooltips";
+@import "layout/to-top";
+@import "layout/custom-inputs";
+@import "layout/slider";
+
+@import "pages/default";
+@import "pages/wide";
+
+@import "sections/form";
+@import "sections/default";
+@import "sections/wide";
+@import "sections/gallery";
+@import "sections/product";
+@import "sections/carousel";
+@import "sections/navi";
+@import "sections/map";
+@import "sections/box-navi";
+@import "sections/slider";
+@import "sections/full-image";
+
+@import "widgets/head-slider";
+@import "widgets/head-default";
+@import "widgets/head-landing-page";
+@import "widgets/top-default";
+@import "widgets/top-multiple";
+@import "widgets/bottom-default";
+@import "widgets/left-default";
+@import "widgets/left-slider";
+@import "widgets/cubic";
+@import "widgets/side";
+
+
+.slick-loading .slick-list
+{
+	background: #fff url('../../img/ajax-loader.gif') center center no-repeat !important;
+}
+
+
+.fotorama__arr, .fotorama__fullscreen-icon, .fotorama__video-close, .fotorama__video-play {
+	background-image: url(../../img/fotorama/fotorama.png);
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 2dppx) {
+	.fotorama__arr, .fotorama__fullscreen-icon, .fotorama__video-close, .fotorama__video-play {
+		background-image: url(../../img/fotorama/fotorama@2x.png);
+	}
+}

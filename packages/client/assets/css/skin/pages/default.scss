@@ -1,0 +1,125 @@
+.default-page {
+	.container .container {
+		@extend .container-fluid;
+		width: auto;
+	}
+
+	.default-section {
+		.section-image {
+			@include make-xs-column-offset(0);
+			@include make-sm-column-offset(0);
+			@include make-md-column-offset(0);
+			@include make-lg-column-offset(0);
+			@include make-xs-column(12);
+			@include make-sm-column(12);
+			@include make-md-column(4);
+			@include make-lg-column(4);
+
+			.list-small-images {
+				text-align: left;
+
+				& > li {
+					@include make-xs-column(3);
+					@include make-sm-column(3);
+					@include make-md-column(4);
+					@include make-lg-column(4);
+				}
+			}
+		}
+
+		.section-text {
+			@include make-xs-column(12);
+			@include make-sm-column(12);
+			@include make-md-column(8);
+			@include make-lg-column(8);
+		}
+
+		.thumbnails-gallery {
+			padding: 0;
+			.list-small-images {
+				& > li {
+					@include make-xs-column(3);
+					@include make-sm-column(3);
+					@include make-md-column(4);
+					@include make-lg-column(4);
+					float: none !important;
+					display: inline-block;
+					vertical-align: middle;
+					padding: 0 !important;
+				}
+			}
+		}
+		.main-btn {
+			text-align: left;
+			.btn {
+				width: 100%;
+			}
+		}
+	}
+	.wide-section {
+		.section-image, .section-text {
+			@include make-sm-column(12);
+			@include make-md-column(12);
+		}
+
+		.list-small-images {
+			text-align: left;
+		}
+	}
+	.map-section{
+		.info{
+			@include make-md-column(4);
+			position: absolute;
+			@media (max-width: 768px) {
+				& {
+					position: inherit;
+				}
+			}
+		}
+	}
+	.gallery-section {
+		.list-small-images {
+			text-align: left;
+			padding: 0 15px;
+		}
+	}
+
+	h2{
+		text-align: left;
+	}
+	.has-padding{
+		padding: 0 $padding-large-horizontal;
+	}
+	.wide-section{
+		.thumbnails-gallery, & .section-image {
+			padding: 0 $padding-large-horizontal;
+			.list-small-images {
+				& > li {
+					@include make-xs-column(3);
+					@include make-sm-column(3);
+					@include make-md-column(2);
+					@include make-lg-column(2);
+				}
+			}
+		}
+		.main-btn{
+			text-align: left;
+		}
+	}
+
+	.map-section {
+		h2 {
+			margin: 0 -15px 10px;
+		}
+	}
+	.carousel-section{
+		.container {
+			padding: 0;
+		}
+	}
+	.form-section {
+		h3 {
+			text-align: left !important;
+		}
+	}
+}
