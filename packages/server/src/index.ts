@@ -6,7 +6,7 @@ import OpenAIServer from "./providers/OpenAIServer";
     serveClient: false,
     path: '/api/v1/chat',
     cors: {
-      origin: 'http://127.0.0.1:8080',
+      origin: 'https://127.0.0.1:3000',
       methods: ['GET', 'POST'],
       allowedHeaders: ['x-assistant'],
       credentials: true
@@ -23,6 +23,7 @@ import OpenAIServer from "./providers/OpenAIServer";
     ],
     actions: {
       'getCounterparties': async (event, args) => {
+        // throw new Error('No permission');
         console.info(event, args);
         return [{name: 'Савчук', id: '1'}, {name: 'Кушнір', id: '2'}];
       },

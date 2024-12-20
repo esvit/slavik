@@ -16,7 +16,7 @@
       --styled-overlay-visibility: visible;
       --shadow-floating-small: 0px 0px 0px 1px #d1d9e080, 0px 6px 12px -3px #25292e0a, 0px 6px 18px 0px #25292e1f;
     }
-    .ai-btn {
+    #ai-btn {
       position: fixed;
       bottom: 16px;
       right: 16px;
@@ -35,10 +35,10 @@
       align-items: center;
       justify-content: center;
     }
-    .ai-popover {
+    #ai {
       background-color: var(--overlay-bgColor, #ffffff);
       box-shadow: var(--shadow-floating-small, var(--color-overlay-shadow, 0 1px 3px rgba(31, 35, 40, 0.12), 0 8px 24px rgba(66, 74, 83, 0.12)));
-      position: absolute;
+      position: fixed;
       border-radius: 12px;
       overflow: hidden;
       animation: 200ms cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running overlay-appear;
@@ -49,81 +49,31 @@
       min-height: 256px;
       width: 480px;
       min-width: 400px;
-    }
-    .ai-popover__inner {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      position: relative;
-    }
-    .ai-popover__header {
-      display: flex;
-      flex-direction: column;
-      -webkit-box-flex: 1;
-      max-height: 100%;
-    }
-    .ai-popover__content {
-      display: flex;
-      -webkit-box-flex: 1;
-      flex-grow: 1;
-      overflow-y: auto;
-      flex-direction: column;
-    }
-    .ai-textarea {
-      position: relative;
-      border: none;
-      border-bottom-right-radius: 0px;
-      border-bottom-left-radius: 0px;
-      border-top-left-radius: var(--borderRadius-medium);
-      border-top-right-radius: var(--borderRadius-medium);
-    }
-    .ai-textarea > textarea {
-      position: absolute;
-      border: 0 none;
-      width: 100%;
-      outline: none;
-      top: 0px;
-      left: 0px;
-      padding: 8px 12px 2px;
-      background: transparent;
-      caret-color: var(--fgColor-default);
-      overflow-y: hidden;
-      vertical-align: middle;
-      resize: none;
-      z-index: 1;
-    }
-    .ai-text-warning {
 
-      font-size: .75rem;
-      line-height: 1rem;
+      z-index: 20;
+      right: 1rem;
+      bottom: -110%;
+
+      &.show {
+        bottom: 1rem;
+      }
+    }
+
+    @keyframes overlay-appear {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="ai-popover">
-  <div class="ai-popover__inner">
-    <div class="ai-popover__header">
-      <svg aria-hidden="true" focusable="false" class="octicon octicon-arrow-left" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L4.81 7h7.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"></path></svg>
-      <span>Chat</span>
-    </div>
-    <div class="ai-popover__content">
+<div id="ai"></div>
 
-      <div id="chat"></div>
-
-      <div>
-        <div class="ai-textarea">
-          <textarea aria-invalid="false" rows="7" cols="30" id="text" autocomplete="off" autocorrect="off" spellcheck="false" role="textbox" aria-multiline="true" placeholder="Запитати NomiNom"></textarea>
-        </div>
-
-        <div class="ai-text-warning">
-          Nomi використовує ШІ, він може помилятися. Перевіряйте важливу інформацію.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="ai-btn">
+<div id="ai-btn">
   <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="stroke:none">
     <!-- Glow filter definition -->
     <defs>
@@ -150,57 +100,29 @@
   </svg>
 </div>
 
-<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="./build/slavik.umd.js"></script>
 <script>
-  var socket = io('http://127.0.0.1:3001', {
+  slavik.useAssistant('test', {
+    title: 'Test Assistant',
+    container: document.getElementById('ai'),
+    url: 'http://127.0.0.1:3001',
     path: '/api/v1/chat',
+    cssPath: '/build/slavik.cjs.css',
+    warningText: 'Використовується ШІ, він може помилятися. Перевіряйте важливу інформацію.',
+    textareaPlaceholder: 'Напишіть повідомлення...',
+    answerLoadingText: 'Завантаження...',
     withCredentials: true,
-    extraHeaders: {
-      "x-assistant": "test"
+    showFullscreen: true,
+    onClose() {
+      document.getElementById('ai').classList.remove('show');
+    },
+    onFullscreen() {
+      console.info('fullscreen');
     }
   });
-  const messages = [];
-  socket.on('bot_action', (funcName, args, callback) => {
-    console.info(funcName, args);
-    callback(123);
+  document.getElementById('ai-btn').addEventListener('click', function () {
+    document.getElementById('ai').classList.toggle('show');
   });
-  socket.on('message', (type, content) => {
-    if (type === 'start_typing') {
-      const el = document.createElement('div');
-      el.setAttribute('id', content.id);
-      el.innerHTML = 'Typing...';
-      document.getElementById('chat').append(el);
-    }
-    if (type === 'stop_typing') {
-      const el = document.createElement('div');
-      el.setAttribute('id', content.id);
-      el.innerHTML = 'Stop typing...';
-      document.getElementById('chat').append(el);
-    }
-    if (type === 'typing') {
-      let message = messages.find(m => m.id === content.id);
-      if (!message) {
-        message = {id: content.id, text: ''};
-        messages.push(message);
-        const el = document.createElement('div');
-        el.setAttribute('id', content.id);
-        document.getElementById('chat').append(el);
-      }
-      for (const item of content.content) {
-        message.text += item.text.value;
-      }
-      document.getElementById(content.id).innerHTML = marked.parse(message.text);
-    }
-  });
-
-  document.getElementById('text').onkeyup = (e) => {
-    if (e.key === 'Enter' && e.target.value !== '') {
-      socket.emit('ask', { id: '1', 'text': e.target.value });
-      e.target.value = '';
-    }
-  };
-
 </script>
 </body>
 </html>

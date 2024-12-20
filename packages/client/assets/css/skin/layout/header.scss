@@ -1,9 +1,0 @@
-@import "main-menu";
-
-header.no-header-widgets {
-	padding-top: 140px;
-
-	@include respond-to(smartphones-tablets) {
-		padding-top: 60px;
-	}
-}

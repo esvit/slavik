@@ -68,7 +68,12 @@ class OpenAIChat {
   async handleRequiresAction(data:any, runId:string, threadId:string) {
     try {
       const toolOutputs = await Promise.all(data.required_action.submit_tool_outputs.tool_calls.map(async (toolCall:any) => {
-        const res = await this.onAction(toolCall);
+        let res;
+        try {
+          res = await this.onAction(toolCall);
+        } catch (error:any) {
+          res = { error: error.message };
+        }
         return {
           tool_call_id: toolCall.id,
           output: res ? JSON.stringify(res) : null

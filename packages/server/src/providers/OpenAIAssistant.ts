@@ -30,7 +30,7 @@ class OpenAIAssistant {
       const action:AssistantAction = this._actions[funcName];
       if (!action) {
         return new Promise((resolve) => {
-          socket.emit('bot_action', funcName, funcArgs, (response:any) => {
+          socket.emit('bot_action', funcName, funcArgs, { id: event.id }, (response:any) => {
             console.log(response); // "got it"
             resolve(response);
           });

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es5",
+    "lib": ["es5", "es2015.promise", "dom", "es2015"],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "outDir": "build",
+    "resolveJsonModule": false,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false
+  },
+  "exclude": ["node_modules/**/*", "packages/**/*", "build/**/*"],
+  "include": ["src/**/*.ts"]
+}
